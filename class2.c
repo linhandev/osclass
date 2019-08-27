@@ -1,3 +1,41 @@
+#include "sys/wait.h"
+#include "sched.h"
+#include "pthread.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "semaphore.h"
+
+int producer(void* args);
+int consumer(void* args);
+pthread_mutex_t mutex;
+sem_t product;
+sem_t warehouse;
+
+char buffer[8][4];
+int bp=0;
+int main()
+{
+	pthread_mutex_init(&mutex,NULL);
+	sem_init(&product,0,0);
+	sem_init(&warehouse,0,8);
+	int clone_flag,arg,retval;
+	char* stack;
+	clone_flag=CLONE_VM|CLONE_SINHAND|CLONE_FS|CLONE_FILES;
+	int i;
+	for(i=0;i<2;i++)
+	{
+		arg=i;
+		stack=(char*)malloc(4096);
+		retval=clone((void*)producer,&(stack[4095]),clone_flag,(void*)&arg);
+		stack=(char*)malloc(4096);
+		retval=clone((void*)producer,&(stack[4095]),clone_flag,(void*)&arg);
+		sleep(1);
+	}
+	exit(1);
+}
+
+
+
 int producer(void * args)
 {
   int id=*((int* )args);
