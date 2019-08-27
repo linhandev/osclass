@@ -109,7 +109,7 @@ int main(int argc, char ** argv) {
 		}
 	}
 	printf("\n");
-	sleep(10);
+	usleep(10);
 };
 
 void proc(int *args)
