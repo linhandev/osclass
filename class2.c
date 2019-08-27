@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include <sched.h>
 #include "sys/wait.h"
 #include "sched.h"
@@ -78,4 +77,4 @@ printf("consumer%d is over! \n",id);
 }
 
 
-//  gcc class2.c -lpthread
+// gcc class2.c -lpthread -D_GNU_SOURCE
