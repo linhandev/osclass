@@ -1,9 +1,14 @@
+#define _GNU_SOURCE
+#include <sched.h>
 #include "sys/wait.h"
 #include "sched.h"
 #include "pthread.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "semaphore.h"
+#include "string.h"
+#include "unistd.h"
+
 
 int producer(void* args);
 int consumer(void* args);
@@ -20,7 +25,7 @@ int main()
 	sem_init(&warehouse,0,8);
 	int clone_flag,arg,retval;
 	char* stack;
-	clone_flag=CLONE_VM|CLONE_SINHAND|CLONE_FS|CLONE_FILES;
+	clone_flag=CLONE_VM|CLONE_SIGHAND|CLONE_FS|CLONE_FILES;
 	int i;
 	for(i=0;i<2;i++)
 	{
@@ -28,13 +33,11 @@ int main()
 		stack=(char*)malloc(4096);
 		retval=clone((void*)producer,&(stack[4095]),clone_flag,(void*)&arg);
 		stack=(char*)malloc(4096);
-		retval=clone((void*)producer,&(stack[4095]),clone_flag,(void*)&arg);
+		retval=clone((void*)consumer,&(stack[4095]),clone_flag,(void*)&arg);
 		sleep(1);
 	}
 	exit(1);
 }
-
-
 
 int producer(void * args)
 {
@@ -64,14 +67,15 @@ int consumer(void * args)
   {
     sleep(10-i);
     sem_wait(&product);
-    ptheread_mutex_lock(&mutex);
+    pthread_mutex_lock(&mutex);
     bp--;
     printf("consumer %d get %s in %d\n",id,buffer[bp],bp);
-
-
-
-
-
-
-  }
+	strcpy(buffer[bp],"zzz\0");
+	pthread_mutex_unlock(&mutex);
+	sem_post(&warehouse);
+	}
+printf("consumer%d is over! \n",id);
 }
+
+
+//  gcc class2.c -lpthread
