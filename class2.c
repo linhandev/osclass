@@ -33,7 +33,7 @@ int main()
 		retval=clone((void*)producer,&(stack[4095]),clone_flag,(void*)&arg);
 		stack=(char*)malloc(4096);
 		retval=clone((void*)consumer,&(stack[4095]),clone_flag,(void*)&arg);
-		sleep(1);
+		usleep(1);
 	}
 	exit(1);
 }

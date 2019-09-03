@@ -8,13 +8,14 @@
 
 char r_buf[4];
 char w_buf[4];
-int pipe_fd[2];   //输入输出管道
-pid_t pid1,pid2,pid3,pid4;
+int pipe_fd[2];
+
 int producer(int id);
 int consumer(int id);
 
 int main()
 {
+	pid_t pid1,pid2,pid3,pid4;
 	if(pipe(pipe_fd)<0)
 	{
 			printf("pipe create error \n");
