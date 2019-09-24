@@ -1,0 +1,141 @@
+段落分层练习：
+
+Paragraph 4:Yet another scheme for approximating Earth’s age had been proposed in 1715 by Sir Edmund Halley (1656-1742), whose name we associate with the famous comet. Halley surmised that the ocean formed soon after the origin of the planet and therefore would be only slightly younger that the age of the solid Earth. He reasoned that the original ocean was not salty and that subsequently salt derived from the weathering of rocks was brought to the sea by streams. Thus, if one knew the total amount of salt dissolved in the ocean and the amount added each year, it might be possible to calculate the ocean’s age. In 1899, Irish geologist John Joly (1857-1933) attempted the calculation. From information provided by gauges placed at the mouths of streams, Joly was able to estimate the annual increment of salt to the oceans. Then, knowing the salinity of ocean water and the approximate volume of water, he calculated the amount of salt already held in solution in the oceans. An estimate of the age of the ocean was obtained by dividing the total salt in the ocean by the rate of salt added each year. Beginning with essentially non-saline oceans, it would have taken about 90 million years of the oceans to reach their present salinity, according to Joly. The figure, however, was off the currently accepted mark of 4.54 billion by a factor of 50, largely because there was no way to account accurately by recycled salt and salt incorporated into clay mineral deposited on the sea floors. Even though in error, Joly’s calculations clearly supported those geologists who insisted on an age for Earth far in excess of a few million years. The belief in Earth’s immense antiquity was also supported by Darwin, Huxley, and other evolutionary biologists, who saw the need for time in the hundreds of millions of years to accomplish the organic evolution apparent in the fossil record.
+1.According to paragraph 4, in which of the following ways could Joly’s estimate of Earth’s age be considered significant?
+○It proved that Halley’s idea about the age of the ocean was fairly accurate.
+○It indicated that Earth was much older than some scientists had claimed.
+○It was favored by the majority of scientists at the end of the nineteenth century
+○It was the basis for much modern research into the salinity of the ocean
+
+
+
+
+
+
+
+
+
+
+
+
+Not only could Smith identify rock strata by the fossils they contained, he could also see a pattern emerging：certain fossils always appear in more ancient sediments while others begin to be seen as the strata become more recent. By following the fossils, Smith was able to put all the strata of England‘s earth into relative temporal sequence. About the same time, Georges Cuvier made the same discovery while studying the rocks around Paris. Soon it was realized that this principle of faunal (animal) succession was valid not only in England or France but virtually everywhere. It was actually a principle of floral succession as well, because plants showed the same transformation through time as did fauna. Limestone may be found in the Cambrian or—300 million years later—in the Jurassic strata but a trilobite—the ubiquitous marine arthropod that had its birth in the Cambrian—will never be found in Jurassic strata, nor a dinosaur in the Cambrian.
+2. Select the TWO answer choices that are true statements based upon the discussion of the principle of faunal succession in paragraph 5. To receive credit, you must select TWO answers.
+○It was a principle that applied to fauna but not to flora．zhi jie xiang fan
+○It was discovered independently by two different geologists，
+○It describes how fossils are distributed in rock strata
+○It explains why plants and animals undergo transformations through time．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Paragraph 2 The separation of charged particles that forms in a storm cloud has a sandwich-like structure. Concentrations of positively charged particles develop at the top and bottom of the cloud, but the middle region becomes negatively charged. Recent measurements made in the field together with laboratory simulations offer a promising explanation of how this structure of charged particles forms. What happens is that small (millimeter-to centimeter-size) pellets of ice form in the cold upper regions of the cloud. When these ice pellets fall, some of them strike much smaller ice crystals in the center of the cloud. The temperature at the center of the cloud is about -15℃ or lower. At such temperatures, the collision between the ice pellets and the ice crystals causes electrical charges to shift so that the ice pellets acquire a negative charge and the ice crystals become positively charged. Then updraft wind currents carry the light, positively charged ice crystals up to the top of the cloud. The heavier negatively charged ice pellets are left to concentrate in the center. This process explains why the top of the cloud becomes positively charged, while the center becomes negatively charged. The negatively charged region is large: several hundred meters thick and several kilometers in diameter. Below this large, cold, negatively charged region, the cloud is warmer than -15℃, and at these temperatures, collisions between ice crystals and falling ice pellets produce positively charged ice pellets that then populate a small region at the base of the cloud.
+3. According to paragraph 2, what causes ice crystals to become positively charged?
+○Collisions with ice pellets
+○Collisions with negatively charged ice crystals at the base of the cloud
+○Becoming concentrated in the central region of the cloud
+○Forming at a temperature greater than -15℃
+
+4. According to paragraph 2, why are positively charged pellets produced in the lower part of the cloud?
+○Collisions between ice crystals and ice pellets increase in number in the lower part of the cloud
+○The lower part of the cloud is smaller than the region above it
+○More ice pellets than ice crystals reach the lower part of the cloud
+○Temperatures in the lower part of the cloud are warmer than -15℃
+
+
+
+
+
+
+
+
+
+
+
+Paragraph 1 According to conventional theory, yawning takes place when people are bored or sleepy and serves the function of increasing alertness by reversing, through deeper breathing, the drop in blood oxygen levels that are caused by the shallow breathing that accompanies lack of sleep or boredom. Unfortunately, the few scientific investigations of yawning have failed to find any connection between how often someone yawns and how much sleep they have had or how tired they are. About the closest any research has come to supporting the tiredness theory is to confirm that adults yawn more often on weekdays than at weekends, and that school children yawn more frequently in their first year at primary school than they do in kindergarten.
+5. In paragraph 1, what point does the author make about the evidence for the tiredness theory of yawning?
+○There is no scientific evidence linking yawning with tiredness.
+○The evidence is wide-ranging because it covers multiple age-groups.
+○The evidence is reliable because it was collected over a long period of time.
+○The evidence is questionable because the yawning patterns of children and adults should be different.
+
+Paragraph4: Reduction in numbers of game should have boded ill for their survival in later times. A worsening of the plight of deer was to be expected as settlers encroached on the land, logging, burning, and clearing, eventually replacing a wilderness landscape with roads, cities, towns, and factories. No doubt the numbers of deer declined still further. Recall the fate of the Columbian white-tailed deer, now in a protected status. But for the black-tailed deer, human pressure has had just the opposite effect. Wild life zoologist Hulmut Buechner(1953), in reviewing the nature of biotic changes in Washington through recorded time, Says that "since the early 1940s, the state has had more deer than at any other time in its history, the winter population fluctuating around approximately 320,000 deer (mule and black-tailed deer), which will yield about 65,000 of either sex and any age annually for an indefinite period
+ 
+6. Which of the following statements about deer populations is supported by the information in paragraph 4?
+○Deer populations reached their highest point during the 1940s and then began to decline.
+○The activities of settlers contributed in unexpected ways to the growth of some deer populations in later times.
+○The cleaning of wilderness land for construction caused biotic changes from which the black-tailed deer population has never recovered.
+○Since the 1940s the winter populations of deer have fluctuated more than the summer populations have
+
+
+
+
+
+Paragraph 5
+However, new geological field studies in Chaco have produced results that may require a significant reassessment of the assumption that the canyon was not a favorable agricultural setting.
+It appears that during the first half of the eleventh century, during the extraordinary boom in construction, a large volume of water and suspended sediment flowed into the canyon.
+A large natural lake may have existed at the western end of Chaco, near the biggest concentration of great houses.
+The presence of large quantities of water and, equally important, a source of sediment that replenished agricultural fields, presumably made the canyon an extremely attractive place for newly arriving people from the northern San Juan River basin.
+
+7. According to paragraph 5, what is the possible significance of new geological field studies in Chaco?
+	They indicate that during the construction boom the Chaco area probably did have enough water and sediment to attract farmers to that area.
+	They could undermine the theory of Chaco as a religious center.
+	They show the presence of excessive amounts of water, which may have led to the departure of most of the people living there during the Bonito phase.
+	They suggest that the kind of sediment present in Chaco in the eleventh century was not favorable for agriculture.
+不知道问什么直接回去找观点
+
+
+Paragraph2: Scientists have asked important questions about this explosion for more than a century. Why did it occur so late in the history of Earth? The origin of multicellular forms of life seems a relatively simple step compared to the origin of life itself. Why does the fossil record not document the series of evolutionary changes during the evolution of animals? Why did animal life evolve so quickly? Paleontologists continue to search the fossil record for answers to these questions.
+
+
+Paragraph3: One interpretation regarding the absence of fossils during this important 100-million-year period is that early animals were soft bodied and simply did not fossilize. Fossilization of soft-bodied animals is less likely than fossilization of hard-bodied animals, but it does occur. Conditions that promote fossilization of soft-bodied animals include very rapid covering by sediments that create an environment that discourages decomposition. In fact, fossil beds containing soft-bodied animals have been known for many years.
+
+8. Which of the following best describes the relationship between Paragraph2 and Paragraph3?
+○Paragraph2 puts forward several scientific claims, one of which is rejected in Paragraph3
+○Paragraph2 poses several questions, and Paragraph3 offers a possible answer to one of them
+○Paragraph2 presents outdated traditional views, while Paragraph3 presents the current scientific conclusions.
+○Paragraph2 introduces a generalization that is illustrated by specific examples in Paragraph3
+
+
+Paragraph 2： Traditionally, it was believed that the transition to agriculture was the result of a worldwide population crisis. It was argued that once hunter-gatherers had occupied the whole world, the population started to grow everywhere and food became scarce; agriculture would have been a solution to this problem.
+We know, however, that contemporary hunter-gatherer societies control their population in a variety of ways. The idea of a world population crisis is therefore unlikely, although population pressure might have arisen in some areas.
+9. Which of the following best describes the way paragraph 2 is organized?
+○A possible explanation for a phenomenon is presented and then criticized.
+○Two similar ways of accounting for a puzzling fact are considered.
+○Early societies' response to a problem is contrasted with contemporary societies' response.
+○A prehistoric development is first explained in traditional terms and then in contemporary terms.
+
+组织结构题，修辞方式
+1.段落分层
+2.概括大意
+
+基本原文找不到答案
+
+
+
+The Beringian landscape during the last ice age was very different from what it is today. Broad, windswept valleys; glaciated mountains; sparse vegetation; and less moisture created a rather forbidding land mass. This land mass supported herds of now-extinct species of mammoth, bison, and horse and somewhat modern versions of caribou, musk ox, elk, and saiga antelope. These grazers supported in turn a number of impressive carnivores, including the giant short-faced bear, the saber-tooth cat, and a large species of lion.
+10.The purpose of paragraph 3 is to
+O contrast today’s Beringian landscape with other landscapes in the American continent
+O describe the Beringian landscape during the last ice age
+O explain why so many Beringian species became extinct during the last ice age
+O summarize the information about Beringia that historians agree on
