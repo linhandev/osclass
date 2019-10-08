@@ -7,7 +7,8 @@
 #include <memory.h>
 #include "HashFile.h"
 
-int hashfile_creat(const char *filename,mode_t mode,int reclen,int total_rec_num) {
+int hashfile_creat(const char *filename,mode_t mode,int reclen,int total_rec_num)
+{
     struct HashFileHeader hfh;
     int fd;
     int rtn;
@@ -38,7 +39,8 @@ int hashfile_creat(const char *filename,mode_t mode,int reclen,int total_rec_num
     }
 }
 
-int hashfile_open(const char *filename,int flags, mode_t mode) {
+int hashfile_open(const char *filename,int flags, mode_t mode)
+{
     int fd=open(filename,flags,mode);
     struct HashFileHeader hfh;
     if(read(fd,&hfh,sizeof(struct HashFileHeader))!=-1) {
@@ -55,16 +57,18 @@ int hashfile_close(int fd) {
     return close(fd);
 }
 
-int hashfile_read(int fd,int keyoffset,int keylen,void *buf) {
-    struct HashFileHeader hfh;
-    readHashFileHeader(fd,&hfh);
-    int offset=hashfile_findrec(fd,keyoffset,keylen,buf);
-    if(offset!=-1) {
-        lseek(fd,offset+sizeof(struct CFTag),SEEK_SET);
-        return read(fd,buf,hfh.reclen);
-    } else {
-        return -1;
-    }
+int hashfile_read(int fd,int keyoffset,int keylen,void *buf)
+{
+  struct HashFileHeader hfh;
+  readHashFileHeader(fd,&hfh);
+  int offset=hashfile_findrec(fd,keyoffset,keylen,buf);
+  if(offset!=-1)
+  {
+      lseek(fd,offset+sizeof(struct CFTag),SEEK_SET);
+      return read(fd,buf,hfh.reclen);
+  } else {
+      return -1;
+  }
 }
 
 int hashfile_write(int fd,int keyoffset,int keylen,void *buf) {
@@ -100,68 +104,71 @@ int hashfile_delrec(int fd,int keyoffset,int keylen,void *buf) {
     return 0;
 }
 
-int hashfile_findrec(int fd,int keyoffset,int keylen,void *buf) {
-    struct HashFileHeader hfh;
-    readHashFileHeader(fd,&hfh);
-    int addr=hash(keyoffset,keylen,buf,hfh.total_rec_num);
-    int offset=sizeof(struct HashFileHeader)+addr*(hfh.reclen+sizeof(struct CFTag));
-    if(lseek(fd,offset,SEEK_SET)==-1)
-        return -1;
-    struct CFTag tag;
-    read(fd,&tag,sizeof(struct CFTag));
-    char count=tag.collision;
-    if(count==0)
-        return -1;  //不存在
+int hashfile_findrec(int fd,int keyoffset,int keylen,void *buf)
+{
+  struct HashFileHeader hfh;
+  readHashFileHeader(fd,&hfh);
+  int addr=hash(keyoffset,keylen,buf,hfh.total_rec_num);
+  int offset=sizeof(struct HashFileHeader)+addr*(hfh.reclen+sizeof(struct CFTag));
+  if(lseek(fd,offset,SEEK_SET)==-1)
+      return -1;
+  struct CFTag tag;
+  read(fd,&tag,sizeof(struct CFTag));
+  char count=tag.collision;
+  if(count==0)
+      return -1;  //不存在
 
 recfree:
-    /**No rewind when reach at the end, the search may fail!!! **/
-    if(tag.free==0)
-    {
-        offset+=hfh.reclen+sizeof(struct CFTag);
-        if(lseek(fd,offset,SEEK_SET)==-1)
-            return -1;
-        read(fd,&tag,sizeof(struct CFTag));
-        goto recfree;
-    } else {
-        char *p=(char*)malloc(hfh.reclen*sizeof(char));
-        read(fd,p,hfh.reclen);
-        //printf("Record is {%d,%s}\n",((struct jtRecord*)p)->key,((struct jtRecord*)p)->other);
-        char *p1,*p2;
-        p1=(char*)buf+keyoffset;
-        p2=p+keyoffset;
-        int j=0;
-        while((*p1==*p2)&&(j<keylen)) {
-            p1++;
-            p2++;
-            j++;
-        }
-        if(j==keylen) {
-            free(p);
-            p=NULL;
-            return (offset);  //找到,返回偏移值
-        } else {
-            if(addr==hash(keyoffset,keylen,p,hfh.total_rec_num)) {
-                count--;  //hash值相等而key值不等
-                if(count==0) {
-                    free(p);
-                    p=NULL;
-                    return -1;  //不存在
-                }
-            }
-            free(p);
-            p=NULL;
-            offset+=hfh.reclen+sizeof(struct CFTag);
-            if(lseek(fd,offset,SEEK_SET)==-1)
-                return -1;
-            read(fd,&tag,sizeof(struct CFTag));
-            goto recfree;
+  /**No rewind when reach at the end, the search may fail!!! **/
+  if(tag.free==0)
+  {
+      offset+=hfh.reclen+sizeof(struct CFTag);
+      if(lseek(fd,offset,SEEK_SET)==-1)
+          return -1;
+      read(fd,&tag,sizeof(struct CFTag));
+      goto recfree;
+  } else {
+      char *p=(char*)malloc(hfh.reclen*sizeof(char));
+      read(fd,p,hfh.reclen);
+      //printf("Record is {%d,%s}\n",((struct jtRecord*)p)->key,((struct jtRecord*)p)->other);
+      char *p1,*p2;
+      p1=(char*)buf+keyoffset;
+      p2=p+keyoffset;
+      int j=0;
+      while((*p1==*p2)&&(j<keylen)) {
+          p1++;
+          p2++;
+          j++;
+      }
+      if(j==keylen) {
+          free(p);
+          p=NULL;
+          return (offset);  //找到,返回偏移值
+      } else {
+          if(addr==hash(keyoffset,keylen,p,hfh.total_rec_num)) {
+              count--;  //hash值相等而key值不等
+              if(count==0) {
+                  free(p);
+                  p=NULL;
+                  return -1;  //不存在
+              }
+          }
+          free(p);
+          p=NULL;
+          offset+=hfh.reclen+sizeof(struct CFTag);
+          if(lseek(fd,offset,SEEK_SET)==-1)
+              return -1;
+          read(fd,&tag,sizeof(struct CFTag));
+          goto recfree;
 
-        }
-    }
+      }
+  }
 }
 
-int hashfile_saverec(int fd,int keyoffset,int keylen,void *buf) {
-    if(checkHashFileFull(fd)) {
+int hashfile_saverec(int fd,int keyoffset,int keylen,void *buf)
+{
+    if(checkHashFileFull(fd))
+    {
         return -1;
     }
     struct HashFileHeader hfh;
@@ -169,19 +176,26 @@ int hashfile_saverec(int fd,int keyoffset,int keylen,void *buf) {
     int addr=hash(keyoffset,keylen,buf,hfh.total_rec_num);
     int offset=sizeof(struct HashFileHeader)+addr*(hfh.reclen+sizeof(struct CFTag));
     if(lseek(fd,offset,SEEK_SET)==-1)
-        return -1;
+    {
+      printf("error lseek out of range when saverec");
+      return -1;  //这应该就是出问题了，不会出现
+    }
     struct CFTag tag;
-    read(fd,&tag,sizeof(struct CFTag));
+    read(fd,&tag,sizeof(struct CFTag));  //read 改变current offset，所以得移回去
     tag.collision++;
     lseek(fd,sizeof(struct CFTag)*(-1),SEEK_CUR);
     write(fd,&tag,sizeof(struct CFTag));
 
-    while(tag.free!=0) { //冲突，顺序探查
+    while(tag.free!=0)
+    { //冲突，顺序探查
         offset+=hfh.reclen+sizeof(struct CFTag);
         if(offset>=lseek(fd,0,SEEK_END))
             offset=sizeof(struct HashFileHeader);//reach at end,then rewind
         if(lseek(fd,offset,SEEK_SET)==-1)
-            return -1;
+        {
+          printf("error lseek out of range in while");
+          return -1;  //这应该就是出问题了，不会出现
+        }
         read(fd,&tag,sizeof(struct CFTag));
     }
     tag.free=1;
@@ -189,20 +203,21 @@ int hashfile_saverec(int fd,int keyoffset,int keylen,void *buf) {
     write(fd,&tag,sizeof(struct CFTag));
     write(fd,buf,hfh.reclen);
     hfh.current_rec_num++;  //当前记录数加1
-    lseek(fd,0,SEEK_SET);
-    return write(fd,&hfh,sizeof(struct HashFileHeader));  //存入记录
+    lseek(fd,0,SEEK_SET);  //curr 复位
+    return write(fd,&hfh,sizeof(struct HashFileHeader));  //更新header
 
 }
 
-int hash(int keyoffset,int keylen,void *buf,int total_rec_num) {
-    int i=0;
-    char *p=(char *)buf+keyoffset;
-    int addr=0;
-    for(i=0; i<keylen; i++) {
-        addr+=(int)(*p);
-        p++;
-    }
-    return addr%(int)(total_rec_num*COLLISIONFACTOR);
+int hash(int keyoffset,int keylen,void *buf,int total_rec_num)
+{
+  char *p=(char *)buf+keyoffset;
+  int addr=0;
+  for(int i=0; i<keylen; i++)
+  {
+      addr+=(int)(*p);
+      p++;
+  }
+  return addr%(int)(total_rec_num*COLLISIONFACTOR);
 }
 
 int readHashFileHeader(int fd,struct HashFileHeader *hfh ) {

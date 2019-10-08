@@ -1,4 +1,4 @@
-#define RECORDLEN 32
+
 struct jtRecord {
     int key;
     char other[RECORDLEN-sizeof(int)];
