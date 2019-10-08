@@ -9,52 +9,54 @@
 
 int hashfile_creat(const char *filename,mode_t mode,int reclen,int total_rec_num)
 {
-    struct HashFileHeader hfh;
-    int fd;
-    int rtn;
-    char *buf;
-    //int i=0;
-    hfh.sig=31415926;
-    hfh.reclen=reclen;
-    hfh.total_rec_num=total_rec_num;
-    hfh.current_rec_num=0;
-    //fd=open(filename,mode);
-    fd=creat(filename,mode);
-    if(fd!=-1) {
-        rtn=write(fd,&hfh,sizeof(struct HashFileHeader));
-        //lseek(fd,sizeof(struct HashFileHeader),SEEK_SET);
-        if(rtn!=-1) {
-            buf=(char*)malloc((reclen+sizeof(struct CFTag))*total_rec_num);
-            memset(buf,0,(reclen+sizeof(struct CFTag))*total_rec_num);
-            rtn=write(fd,buf,(reclen+sizeof(struct CFTag))*total_rec_num);
-            free(buf);
-
-        }
-        close(fd);
-        return rtn;
-
-    } else {
-        close(fd);
-        return -1;
+  struct HashFileHeader hfh;  //文件头
+  int fd;   //文件号
+  int rtn;  //return
+  char *buf; //temp buffer
+  hfh.sig=31415926;
+  hfh.reclen=reclen;
+  hfh.total_rec_num=total_rec_num;
+  hfh.current_rec_num=0;
+  fd=creat(filename,mode);
+  if(fd!=-1)
+  {
+    rtn=write(fd,&hfh,sizeof(struct HashFileHeader));
+    if(rtn!=-1)
+    {
+      buf=(char*)malloc((reclen+sizeof(struct CFTag))*total_rec_num);
+      memset(buf,0,(reclen+sizeof(struct CFTag))*total_rec_num);
+      rtn=write(fd,buf,(reclen+sizeof(struct CFTag))*total_rec_num);
+      free(buf);
     }
+    close(fd);
+    return rtn;
+  }
+  else
+  {
+    close(fd);
+    return -1;
+  }
 }
 
 int hashfile_open(const char *filename,int flags, mode_t mode)
 {
     int fd=open(filename,flags,mode);
     struct HashFileHeader hfh;
-    if(read(fd,&hfh,sizeof(struct HashFileHeader))!=-1) {
-        lseek(fd,0,SEEK_SET);
-        if(hfh.sig==31415926)
-            return fd;
-        else
-            return -1;
-    } else
-        return -1;
+    if(read(fd,&hfh,sizeof(struct HashFileHeader))!=-1)
+    {
+      lseek(fd,0,SEEK_SET);
+      if(hfh.sig==31415926)
+          return fd;
+      else
+          return -1;
+    }
+    else
+      return -1;
 }
 
-int hashfile_close(int fd) {
-    return close(fd);
+int hashfile_close(int fd)
+{
+  return close(fd);
 }
 
 int hashfile_read(int fd,int keyoffset,int keylen,void *buf)
@@ -64,16 +66,18 @@ int hashfile_read(int fd,int keyoffset,int keylen,void *buf)
   int offset=hashfile_findrec(fd,keyoffset,keylen,buf);
   if(offset!=-1)
   {
-      lseek(fd,offset+sizeof(struct CFTag),SEEK_SET);
-      return read(fd,buf,hfh.reclen);
-  } else {
-      return -1;
+    lseek(fd,offset+sizeof(struct CFTag),SEEK_SET);
+    return read(fd,buf,hfh.reclen);
+  }
+  else
+  {
+    return -1;
   }
 }
 
-int hashfile_write(int fd,int keyoffset,int keylen,void *buf) {
-    return hashfile_saverec(fd,keyoffset,keylen,buf);
-    //return -1;
+int hashfile_write(int fd,int keyoffset,int keylen,void *buf)
+{
+  return hashfile_saverec(fd,keyoffset,keylen,buf);
 }
 
 int hashfile_delrec(int fd,int keyoffset,int keylen,void *buf) {

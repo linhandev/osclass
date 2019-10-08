@@ -29,7 +29,10 @@ int main(int argc, char *argv[])
 
 
   int fd=hashfile_creat(FILENAME,O_RDWR|O_CREAT,RECORDLEN,total_record_number);
-  printf("已经成功创建文件\n");
+  if(fd!=-1)
+    printf("已经成功创建文件\n");
+  else
+    return 0;
 
   char cmd[10];
   while(scanf("%s",cmd))
