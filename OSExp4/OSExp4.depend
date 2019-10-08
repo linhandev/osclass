@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1368181323 source:/home/wangkai/OSExp/OSExp4/jtRecord.c
+	<config.h>
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<string.h>
+	"HashFile.h"
+	"jtRecord.h"
+
+1368172631 /home/wangkai/OSExp/OSExp4/HashFile.h
+	<unistd.h>
+
+1368172645 /home/wangkai/OSExp/OSExp4/jtRecord.h
+	<config.h>
+
+1368183698 source:/home/wangkai/OSExp/OSExp4/HashFile.c
+	<unistd.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdio.h>
+	<malloc.h>
+	<memory.h>
+	"HashFile.h"
+
