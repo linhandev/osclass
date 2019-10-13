@@ -59,14 +59,16 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-void on_but_add_clicked (GtkButton *b)
+void on_but_add_clicked (GtkButton *b,gpointer pointer)
 {
-  gchar *buf;
-  buf=g_strdup(gtk_entry_get_text(GTK_ENTRY(entry_key)));
+  const gchar *buf;
+	buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
 
+	gtk_label_set_text (GTK_LABEL(hash_data_pre), buf );
 
+	printf("%s",buf);
 
-	gtk_label_set_text (GTK_LABEL(hash_data_pre), buf);
+	return;
 }
 
 void  on_but_del_clicked (GtkButton *b)
