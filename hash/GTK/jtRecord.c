@@ -51,7 +51,11 @@ int main(int argc, char *argv[])
 {
 	int total_record_number=6;
 
+<<<<<<< HEAD
   int fd=hashfile_creat(FILENAME,O_RDWR|O_CREAT,RECORDLEN,total_record_number);
+=======
+	int fd=hashfile_creat(FILENAME,O_RDWR|O_CREAT,RECORDLEN,total_record_number);
+>>>>>>> c8a144374cf3bd20c23e3d202d41af92e8aa515a
   if(fd!=-1)
     printf("已经成功创建文件\n");
   else
@@ -90,6 +94,7 @@ void on_but_add_clicked (GtkButton *b,gpointer pointer)
 	int fd=hashfile_open(FILENAME,O_RDWR,0);
 	struct jtRecord record;
 
+<<<<<<< HEAD
   const gchar *key_buf;
 	const gchar *value_buf;
 
@@ -102,6 +107,11 @@ void on_but_add_clicked (GtkButton *b,gpointer pointer)
 	record.other=value_buf;
 	hashfile_saverec(fd,KEYOFFSET,KEYLEN,&record);
 	hashfile_close(fd);
+=======
+	gtk_label_set_text (GTK_LABEL(hash_data_pre), buf );
+	int key=atoi(buf);
+	printf("%d",key);
+>>>>>>> c8a144374cf3bd20c23e3d202d41af92e8aa515a
 
 	return;
 }
