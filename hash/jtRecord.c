@@ -96,7 +96,6 @@ void refresh_label_pre()
 	memset(hash_buffer,0,sizeof(char)*500);
 
   int fd;
-  g_print("\n");
   fd=open(FILENAME,O_RDWR);
   lseek(fd,sizeof(struct HashFileHeader),SEEK_SET);
   struct jtRecord jt;
@@ -134,7 +133,6 @@ void refresh_label_now()
 	memset(hash_buffer,0,sizeof(char)*500);
 
 	int fd;
-	g_print("\n");
 	fd=open(FILENAME,O_RDWR);
 	lseek(fd,sizeof(struct HashFileHeader),SEEK_SET);
 	struct jtRecord jt;
