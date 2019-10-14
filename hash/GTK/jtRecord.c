@@ -100,7 +100,7 @@ void on_but_add_clicked (GtkButton *b,gpointer pointer)
 
 	int key = atoi(key_buf);
 	record.key=key;
-	record.other=value_buf;
+	record.other=*value_buf;
 	hashfile_saverec(fd,KEYOFFSET,KEYLEN,&record);
 	hashfile_close(fd);
 
