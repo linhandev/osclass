@@ -7,7 +7,28 @@
 #include <gtk/gtkx.h>
 #include <math.h>
 #include <ctype.h>
+//GTK include
 
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#define RECORDLEN 32   //一条记录整个的大小，包括key和内容
+#define COLLISIONFACTOR 0.5  //Hash函数冲突率，已经定义过，要改的话在这改
+
+#include <stdio.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
+
+#include "HashFile.h"
+#include "jtRecord.h"
+#define KEYOFFSET 0   //key在struct里的offset,单位字节
+#define KEYLEN sizeof(int)
+#define FILENAME "jing.hash"
 
 
 // Make them global
@@ -28,11 +49,11 @@ GError *error = NULL;
 
 int main(int argc, char *argv[])
 {
+	int total_record_number=6;
 
 
 
 	gtk_init(&argc, &argv); // init Gtk
-
 //---------------------------------------------------------------------
 // establish contact with xml code used to adjust widget settings
 //---------------------------------------------------------------------
