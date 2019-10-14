@@ -51,6 +51,11 @@ int main(int argc, char *argv[])
 {
 	int total_record_number=6;
 
+	int fd=hashfile_creat(FILENAME,O_RDWR|O_CREAT,RECORDLEN,total_record_number);
+  if(fd!=-1)
+    printf("已经成功创建文件\n");
+  else
+    return 0;
 
 
 	gtk_init(&argc, &argv); // init Gtk
@@ -86,8 +91,8 @@ void on_but_add_clicked (GtkButton *b,gpointer pointer)
 	buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
 
 	gtk_label_set_text (GTK_LABEL(hash_data_pre), buf );
-
-	printf("%s",buf);
+	int key=atoi(buf);
+	printf("%d",key);
 
 	return;
 }
