@@ -51,6 +51,11 @@ int main(int argc, char *argv[])
 {
 	int total_record_number=6;
 
+  int fd=hashfile_creat(FILENAME,O_RDWR|O_CREAT,RECORDLEN,total_record_number);
+  if(fd!=-1)
+    printf("已经成功创建文件\n");
+  else
+    return 0;
 
 
 	gtk_init(&argc, &argv); // init Gtk
@@ -82,18 +87,35 @@ int main(int argc, char *argv[])
 
 void on_but_add_clicked (GtkButton *b,gpointer pointer)
 {
-  const gchar *buf;
-	buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
+	int fd=hashfile_open(FILENAME,O_RDWR,0);
+	struct jtRecord record;
 
-	gtk_label_set_text (GTK_LABEL(hash_data_pre), buf );
+  const gchar *key_buf;
+	const gchar *value_buf;
 
-	printf("%s",buf);
+	key_buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
+	value_buf=gtk_entry_get_text(GTK_ENTRY(entry_value));
+	// gtk_label_set_text (GTK_LABEL(hash_data_pre), key_buf );
+
+	int key = atoi(key_buf);
+	record.key=key;
+	record.other=value_buf;
+	hashfile_saverec(fd,KEYOFFSET,KEYLEN,&record);
+	hashfile_close(fd);
 
 	return;
 }
 
 void  on_but_del_clicked (GtkButton *b)
 {
+	int fd=hashfile_open(FILENAME,O_RDWR,0);
+	struct jtRecord record;
+
+	const gchar *key_buf;
+	const gchar *value_buf;
+
+	key_buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
+	value_buf=gtk_entry_get_text(GTK_ENTRY(entry_value));
 	gtk_label_set_text (GTK_LABEL(hash_data_pre), (const gchar* ) "Hello World");
 }
 
