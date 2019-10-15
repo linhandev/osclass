@@ -23,7 +23,7 @@
 #define KERNEL_VERSION(a,b,c) ((a)*65536+(b)*256+(c))
 #endif
 
-/* Conditional compilation. LINUX_VERSION_CODE is 
+/* Conditional compilation. LINUX_VERSION_CODE is
  * the code (as per KERNEL_VERSION) of this version.
 */
 #if LINUX_VERSION_CODE > KERNEL_VERSION(2,2,0)
@@ -53,23 +53,23 @@ static ssize_t mydev_read(struct file *file,char *buffer, size_t length ,loff_t 
 {
     int bytes_read=0;
     //确认访问用户内存空间合法性
-    if(verify_area(VERIFY_WRITE,buffer,length)==-EFAULT) 
-return -EFAULT;  
+    if(verify_area(VERIFY_WRITE,buffer,length)==-EFAULT)
+return -EFAULT;
     //由用户空间到系统空间复制
     bytes_read=copy_to_user(buffer,Message,length);
-    return bytes_read;  
+    return bytes_read;
 }
 static ssize_t mydev_write(struct file *file, const char *buffer,size_t length,loff_t *f_pos)
-{ 
+{
     int len = BUF_LEN<length?BUF_LEN:length;
     //确认访问用户内存空间合法性
     if(verify_area(VERIFY_READ,buffer,length)==-EFAULT)
        return –EFAULT;
     //由用户空间到系统空间复制
-    copy_from_user(Message,buffer,len); 
+    copy_from_user(Message,buffer,len);
     return length;
 }
-struct  file_operations  Fops = 
+struct  file_operations  Fops =
 {
     release: mydev_release,
     open: mydev_open,
@@ -77,7 +77,7 @@ struct  file_operations  Fops =
     write: mydev_write
 };
 int init_module(void)
-{ 
+{
 //设备注册
     Major = register_chrdev(0,DEVICE_NAME,&Fops);
 if(Major<0)
@@ -97,36 +97,6 @@ void cleanup_module(void)
     printk("Error in unregister_chrdev: %d\n",ret);
 }
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("KUENG"); 
+MODULE_AUTHOR("KUENG");
 
 ///////////////////////////////////////////////////////
-test.c 
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <string.h>
-main()
-{
-    int testdev;
-    int i ;
-    char buf[50]= "pear to dev!";
-    printf("program test is running!\n");
-    testdev = open("/dev/mydev",O_RDWR);
-    if(testdev==-1)
-    {
-       printf("can't open file \n");
-       exit(0);
-    }
-    //向设备写入"pear to dev!"
-    write(testdev,buf,50);
-    printf("write \"%s\"\n",buf,50);
-    //更改buf内容为"apple to dev!"
-strcpy(buf,"apple to dev!");
-printf("buffer is changed to \"%s\"\n",buf,50);
-   //由设备读出内容, 比较与buf不同
-   read(testdev,buf,50);
-    printf("read from dev is \"%s\"\n",buf);
-    //释放设备
-    close(testdev);
-}
