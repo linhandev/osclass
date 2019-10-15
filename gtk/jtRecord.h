@@ -1,3 +1,4 @@
+
 struct jtRecord {
     int key;
     char other[RECORDLEN-sizeof(int)];
