@@ -6,3 +6,5 @@ sudo ./hash  <br>
 // yum install gnome-devel gnome-devel-docs <br><br>
 
 // sudo apt-get install libgtk2.0*     用的是3 apt不清楚 <br>
+
+界面编辑工具 Glade<br>
