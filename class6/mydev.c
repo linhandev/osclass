@@ -18,7 +18,7 @@
 #include <linux/fs.h>
 #include <linux/wrapper.h>
 #include <linux/types.h>
-#include <asm/segment.h>
+// #include <asm/segment.h>
 #ifndef KERNEL_VERSION
 #define KERNEL_VERSION(a,b,c) ((a)*65536+(b)*256+(c))
 #endif
@@ -26,13 +26,13 @@
 /* Conditional compilation. LINUX_VERSION_CODE is
  * the code (as per KERNEL_VERSION) of this version.
 */
-#if LINUX_VERSION_CODE > KERNEL_VERSION(2,2,0)
-#include <asm/uaccess.h>  /* for put_user */
-#endif
+// #if LINUX_VERSION_CODE > KERNEL_VERSION(2,2,0)
+// #include <asm/uaccess.h>  /* for put_user */
+// #endif
 #define SUCCESS 0
-#define DEVICE_NAME "kueng_char_dev"
+#define DEVICE_NAME "hanlin_char_dev"
 #define BUF_LEN 50
-static  int Device_Open =0;
+static int Device_Open =0;
 static char Message[BUF_LEN];
 static int Major;
 static int mydev_open(struct inode *inode,struct file *file)
@@ -41,12 +41,12 @@ static int mydev_open(struct inode *inode,struct file *file)
         return -EBUSY;
     Device_Open=1;
     MOD_INC_USE_COUNT;  // 模块使用者数加１，非0不能卸载
-return 0;
+    return 0;
 }
 static int mydev_release(struct inode *inode,struct file *file)
 {
     Device_Open=0;
-MOD_DEC_USE_COUNT;  // 模块使用者数减１
+    MOD_DEC_USE_COUNT;  // 模块使用者数减１
     return 0;
 }
 static ssize_t mydev_read(struct file *file,char *buffer, size_t length ,loff_t *f_pos)
@@ -54,7 +54,7 @@ static ssize_t mydev_read(struct file *file,char *buffer, size_t length ,loff_t 
     int bytes_read=0;
     //确认访问用户内存空间合法性
     if(verify_area(VERIFY_WRITE,buffer,length)==-EFAULT)
-return -EFAULT;
+      return -EFAULT;
     //由用户空间到系统空间复制
     bytes_read=copy_to_user(buffer,Message,length);
     return bytes_read;
@@ -80,8 +80,8 @@ int init_module(void)
 {
 //设备注册
     Major = register_chrdev(0,DEVICE_NAME,&Fops);
-if(Major<0)
-{
+    if(Major<0)
+    {
          printk("Registering character device failed with %d\n",Major);
          return Major;
     }
@@ -97,6 +97,4 @@ void cleanup_module(void)
     printk("Error in unregister_chrdev: %d\n",ret);
 }
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("KUENG");
-
-///////////////////////////////////////////////////////
+MODULE_AUTHOR("HANLIN");
