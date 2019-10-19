@@ -19,10 +19,10 @@ int main()
     write(testdev,buf,50);
     printf("write \"%s\"\n",buf,50);
     //更改buf内容为"apple to dev!"
-strcpy(buf,"apple to dev!");
-printf("buffer is changed to \"%s\"\n",buf,50);
+    strcpy(buf,"apple to dev!");
+    printf("buffer is changed to \"%s\"\n",buf,50);
    //由设备读出内容, 比较与buf不同
-   read(testdev,buf,50);
+    read(testdev,buf,50);
     printf("read from dev is \"%s\"\n",buf);
     //释放设备
     close(testdev);
