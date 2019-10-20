@@ -10,7 +10,9 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/version.h>
-#include <linux/config.h>
+// #include <linux/config.h>
+// #include <linux/autoconf.h>
+#include <linux/kconfig.h>
 #if CONFIG_MODVERSIONS == 1
 #define MODVERSIONS
 #include <linux/modversions.h>
