@@ -118,19 +118,21 @@ static int dev_open(struct inode *inodep, struct file *filep){
  *  @param len The length of the b
  *  @param offset The offset if required
  */
-static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset){
+static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset)
+{
    int error_count = 0;
    // copy_to_user has the format ( * to, *from, size) and returns 0 on success
    error_count = copy_to_user(buffer, message, size_of_message);
 
-   if (error_count==0){            // if true then have success
-      printk(KERN_INFO "EBBChar: Sent %d characters to the user\n", size_of_message);
-      return (size_of_message=0);  // clear the position to the start and return 0
-   }
-   else {
-      printk(KERN_INFO "EBBChar: Failed to send %d characters to the user\n", error_count);
-      return -EFAULT;              // Failed -- return a bad address message (i.e. -14)
-   }
+   // if (error_count==0){            // if true then have success
+   //    printk(KERN_INFO "EBBChar: Sent %d characters to the user\n", size_of_message);
+   //    return (size_of_message=0);  // clear the position to the start and return 0
+   // }
+   // else {
+   //    printk(KERN_INFO "EBBChar: Failed to send %d characters to the user\n", error_count);
+   //    return -EFAULT;              // Failed -- return a bad address message (i.e. -14)
+   // }
+   return error_count;
 }
 
 /** @brief This function is called whenever the device is being written to from user space i.e.
@@ -141,10 +143,13 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  *  @param len The length of the array of data that is being passed in the const char buffer
  *  @param offset The offset if required
  */
-static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
-   sprintf(message, "%s(%zu letters)", buffer, len);   // appending received string with its length
+static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset)
+{
+	copy_from_user(message,buffer,len);
+
+   // sprintf(message, "%s(%zu letters)", buffer, len);   // appending received string with its length
    size_of_message = strlen(message);                 // store the length of the stored message
-   printk(KERN_INFO "EBBChar: Received %zu characters from the user\n", len);
+   // printk(KERN_INFO "EBBChar: Received %zu characters from the user\n", len);
    return len;
 }
 

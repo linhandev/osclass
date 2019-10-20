@@ -33,12 +33,12 @@ __attribute__((section("__versions"))) = {
 	{ 0x6bc3fbc0, "__unregister_chrdev" },
 	{ 0xe90ba3f6, "__class_create" },
 	{ 0x940f4bc0, "__register_chrdev" },
-	{ 0x56470118, "__warn_printk" },
 	{ 0x6ce54927, "_copy_to_user" },
-	{ 0x88db9f48, "__check_object_size" },
 	{ 0xcbd4898c, "fortify_panic" },
+	{ 0x56470118, "__warn_printk" },
 	{ 0xa916b694, "strnlen" },
-	{ 0x3c3ff9fd, "sprintf" },
+	{ 0x89cfd022, "_copy_from_user" },
+	{ 0x88db9f48, "__check_object_size" },
 	{ 0xc5850110, "printk" },
 	{ 0xbdfb6dbb, "__fentry__" },
 };
@@ -49,4 +49,4 @@ __attribute__((section(".modinfo"))) =
 "depends=";
 
 
-MODULE_INFO(srcversion, "4523AD7EA70C29C1A91DDA0");
+MODULE_INFO(srcversion, "2587B33DA5DDE73E7C42AF3");
