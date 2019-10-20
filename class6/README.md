@@ -28,3 +28,22 @@ arch  include  Makefile  Module.symvers  scripts
 If things go south, kernel can be corrupted. Most cases a reboot will restore everything, but prep for something worse.<br>
 
 Avoid using global variabels cuz they are shared with all kernels and may get things messy.<br>
+
+
+essential things to know about Makefile is 1st every cmd should start with a tab of 4 spaces. A tab of 2 spaces and 4 spaces wont do the job.
+obj-m+=hello.o
+
+all:
+ make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) modules
+clean:
+ make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
+
+then obj-m should equal to the .c filename
+and after make there should above all be a .ko file which is the kernel u will be loading
+
+sudo insmod hello.ko # should be loaded in dir /sys/module
+lsmod
+modinfo hello.ko
+sudo rmmod hello.ko
+
+sudo insmod hello.ko name=Derek #custom param
