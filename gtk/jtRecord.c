@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
   hash_data_now = GTK_WIDGET(gtk_builder_get_object(builder,"hash_data_now"));
 	label_search_result = GTK_WIDGET(gtk_builder_get_object(builder,"label_search_result"));
 
-	gtk_window_set_title (GTK_WINDOW (window), "HASH hanlin2117");
+	gtk_window_set_title (GTK_WINDOW (window), "HASH zhangrui");
 
 	gtk_widget_show(window);
 

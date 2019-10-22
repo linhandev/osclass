@@ -1,1 +1,1 @@
-cmd_/home/david/Desktop/github/osclass/class6/test/ebbchar.mod := { echo  /home/david/Desktop/github/osclass/class6/test/ebbchar.o; echo; } > /home/david/Desktop/github/osclass/class6/test/ebbchar.mod
+cmd_/home/david/Desktop/github/osclass/class6/ebbchar/ebbchar.mod := { echo  /home/david/Desktop/github/osclass/class6/ebbchar/ebbchar.o; echo; } > /home/david/Desktop/github/osclass/class6/ebbchar/ebbchar.mod
