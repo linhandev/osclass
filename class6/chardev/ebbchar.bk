@@ -1,27 +1,15 @@
-/**
- * @file   ebbchar.c
- * @author Derek Molloy
- * @date   7 April 2015
- * @version 0.1
- * @brief   An introductory character driver to support the second article of my series on
- * Linux loadable kernel module (LKM) development. This module maps to /dev/ebbchar and
- * comes with a helper C program that can be run in Linux user space to communicate with
- * this the LKM.
- * @see http://www.derekmolloy.ie/ for a full description and follow-up descriptions.
- */
-
 #include <linux/init.h>           // Macros used to mark up functions e.g. __init __exit
 #include <linux/module.h>         // Core header for loading LKMs into the kernel
 #include <linux/device.h>         // Header to support the kernel Driver Model
 #include <linux/kernel.h>         // Contains types, macros, functions for the kernel
 #include <linux/fs.h>             // Header for the Linux file system support
-#include <linux/uaccess.h>          // Required for the copy to user function
-#define  DEVICE_NAME "ebbchar"    ///< The device will appear at /dev/ebbchar using this value
-#define  CLASS_NAME  "ebb"        ///< The device class -- this is a character device driver
+#include <linux/uaccess.h>        // Required for the copy to user function
+#define  DEVICE_NAME "mydev"      ///< The device will appear at /dev/mydev using this value
+#define  CLASS_NAME  "char_dev"        ///< The device class -- this is a character device driver
 
 MODULE_LICENSE("GPL");            ///< The license type -- this affects available functionality
-MODULE_AUTHOR("Derek Molloy");    ///< The author -- visible when you use modinfo
-MODULE_DESCRIPTION("A simple Linux char driver for the BBB");  ///< The description -- see modinfo
+MODULE_AUTHOR("David Lin");    ///< The author -- visible when you use modinfo
+MODULE_DESCRIPTION("Linux char device example");  ///< The description -- see modinfo
 MODULE_VERSION("0.1");            ///< A version number to inform users
 
 static int    majorNumber;                  ///< Stores the device number -- determined automatically

@@ -1,4 +1,6 @@
 #include <unistd.h>
+#define RECORDLEN 32   //一条记录整个的大小，包括key和内容
+
 #define COLLISIONFACTOR 0.5  //Hash函数冲突因子
 struct HashFileHeader {
     int sig;  //Hash文件印鉴

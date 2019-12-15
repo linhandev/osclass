@@ -1,0 +1,1 @@
+cmd_/home/david/Desktop/github/osclass/class6/chardev/mydev.mod := { echo  /home/david/Desktop/github/osclass/class6/chardev/mydev.o; echo; } > /home/david/Desktop/github/osclass/class6/chardev/mydev.mod

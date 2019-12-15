@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <string.h>
 #include <malloc.h>
 #include <memory.h>
 #include "HashFile.h"
@@ -138,15 +139,18 @@ recfree:
       read(fd,p,hfh.reclen);
       //printf("Record is {%d,%s}\n",((struct jtRecord*)p)->key,((struct jtRecord*)p)->other);
       char *p1,*p2;
-      p1=(char*)buf+keyoffset;
-      p2=p+keyoffset;
-      int j=0;
-      while((*p1==*p2)&&(j<keylen)) {
-          p1++;
-          p2++;
-          j++;
-      }
-      if(j==keylen) {
+      p1=(char*)buf+keyoffset+sizeof(int);
+      p2=p+keyoffset+sizeof(int);
+      // int j=0;
+      // while((*p1==*p2)&&(j<keylen)) {
+      //     p1++;
+      //     p2++;
+      //     j++;
+      // }
+      // if(j==( (RECORDLEN-sizeof(int))/sizeof(char) ) ) {
+	  if( memcmp(p1,p2, RECORDLEN-sizeof(int) )==0 )
+	  {
+		  printf("+_+%d+_+",bcmp(p1,p2, RECORDLEN-sizeof(int)) );
           free(p);
           p=NULL;
           return (offset);  //找到,返回偏移值

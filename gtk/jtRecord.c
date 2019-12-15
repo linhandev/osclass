@@ -14,7 +14,6 @@
 #include <config.h>
 #endif
 
-#define RECORDLEN 32   //一条记录整个的大小，包括key和内容
 #define COLLISIONFACTOR 0.5  //Hash函数冲突率，已经定义过，要改的话在这改
 
 #include <stdio.h>
@@ -81,7 +80,7 @@ int main(int argc, char *argv[])
   hash_data_now = GTK_WIDGET(gtk_builder_get_object(builder,"hash_data_now"));
 	label_search_result = GTK_WIDGET(gtk_builder_get_object(builder,"label_search_result"));
 
-	gtk_window_set_title (GTK_WINDOW (window), "HASH zhangrui");
+	gtk_window_set_title (GTK_WINDOW (window), "HASH cyh");
 
 	gtk_widget_show(window);
 
@@ -266,7 +265,7 @@ void	on_but_search_clicked (GtkButton *b)   //search through the content of "oth
 
 
 	struct jtRecord record;
-  const gchar *key_buf;
+	const gchar *key_buf;
 	const gchar *value_buf;
 	key_buf=gtk_entry_get_text(GTK_ENTRY(entry_key));
 	value_buf=gtk_entry_get_text(GTK_ENTRY(entry_value));
@@ -313,6 +312,5 @@ void	on_but_search_clicked (GtkButton *b)   //search through the content of "oth
 
 
 /*
-gcc   jtRecord.c  -lm `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -rdynamic
-gcc -Wno-format -o hash jtRecord.c -Wno-deprecated-declarations -Wno-format-security -lm `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
- */
+gcc  HashFile.c jtRecord.c  -lm `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -rdynamic
+*/
